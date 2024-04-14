@@ -6,22 +6,14 @@
 
 ![screenshot-20240401-112028](imgs/screenshot-20240401-112028.png)
 
-####  `浦语·灵笔2` 的 `图文创作` 部署
+#### `浦语·灵笔2` 的 `图文创作` 部署
 
 ![screenshot-20240401-150636](imgs/screenshot-20240401-150636.png)
 
-####  `浦语·灵笔2` 的 `视觉问答` 部署
+#### `浦语·灵笔2` 的 `视觉问答` 部署
 
 ![screenshot-20240401-173842](imgs/screenshot-20240401-173842.png)
 
 #### `Lagent` 工具调用 `数据分析` Demo 部署
 
 ![screenshot-20240401-204209](imgs/screenshot-20240401-204209.png)
-
-
-
-![image-20240403201544254](/Users/liyu/Library/Application Support/typora-user-images/image-20240403201544254.png)
-
-
-
-**a**
