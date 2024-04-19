@@ -1,0 +1,78 @@
+# Xtuner Homework
+
+## 快速上手 截图
+
+微调：
+
+![screenshot-20240417-203709](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240417-203709.png)
+
+转HF：
+
+![screenshot-20240418-074625](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-074625.png)
+
+将 HuggingFace adapter 合并到大语言模型：
+
+![screenshot-20240418-075000](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-075000.png)
+
+TODO: 合并后的文件大小完全一样，为什么？（熟悉QLora的原理，熟悉Merge的原理）
+
+与合并后的模型对话:
+
+![screenshot-20240418-075518](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-075518.png)
+
+## 自定义微调 截图
+
+转换数据格式：
+
+![screenshot-20240418-080952](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-080952.png)
+
+**使用自定义数据微调：**
+
+![screenshot-20240418-084914](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-084914.png)
+
+**微调后进行测试：**
+
+转为HF格式:
+
+```bash
+xtuner convert pth_to_hf internlm_chat_7b_qlora_mqa_e3_copy.py ./work_dirs/internlm_chat_7b_qlora_mqa_e3_copy/epoch_3.pth ./hf
+```
+
+使用HF格式进行测试：
+
+```bash
+xtuner chat /root/ft-oasst1/internlm-chat-7b --adapter hf --prompt-template internlm_chat --system-template medical
+```
+
+![screenshot-20240418-091941](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-091941.png)
+
+简单测试，发现训练集可以工作，但测试集的不工作，可能是训练不充分？
+
+## MS-Agent 截图
+
+**训练截图：**
+
+![screenshot-20240418-105623](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-105623.png)
+
+训练时，因modelscope的问题无法导入数据，因训练耗时，这里不进行debug。
+
+**运行lagent**
+
+![screenshot-20240418-114753](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-114753.png)
+
+这时，需要运行：
+
+```bash
+export MKL_SERVICE_FORCE_INTEL=1
+export MKL_THREADING_LAYER=GNU
+```
+
+![screenshot-20240418-115341](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-115341.png)
+
+这时，需要修改代码，/root/xtuner019/xtuner/xtuner/tools/chat.py 中，删除任意一处 trust_remote_code
+
+此时，继续运行，发现无法得到正确结果。
+
+![screenshot-20240418-122027](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-122027.png)
+
+debug发现，lagent无法正确调用工具。
