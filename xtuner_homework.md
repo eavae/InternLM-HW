@@ -76,3 +76,50 @@ export MKL_THREADING_LAYER=GNU
 ![screenshot-20240418-122027](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-122027.png)
 
 debug发现，lagent无法正确调用工具。
+
+## 认知小助手
+
+使用GPT整理语料，提示词如下：
+
+```text
+将这个对话整理成json数组的格式，如下```{
+        "messages": [
+            {
+                "role": "user",
+                "content": "请做一下自我介绍"
+            },
+            {
+                "role": "assistant",
+                "content": "我是「千织屋」的老板。枫丹著名服装设计师。"
+            }
+        ]
+    }```，其中role的content是问题部分，assistant的content是千织的回答。注意，该对象中只能包含一轮对话。多轮对话需要在该对象的最外层添加数组。
+```
+
+第0轮：
+
+![screenshot-20240420-094811](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-094811.png)
+
+第120步：
+
+![qianzhi-120](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-120.png)
+
+第240步：
+
+![qianzhi-240](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-240.png)
+
+第480步：
+
+![qianzhi-480](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-480.png)
+
+测试结果：
+
+![千织](/Users/liyu/codespace/InternLM-HW/imgs/千织.jpg)
+
+上传模型：
+
+![screenshot-20240420-145926](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-145926.png)
+
+Github授权失败，无法继续
+
+![screenshot-20240420-165021](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-165021.png)
