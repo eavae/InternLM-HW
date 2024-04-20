@@ -4,31 +4,31 @@
 
 微调：
 
-![screenshot-20240417-203709](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240417-203709.png)
+![screenshot-20240417-203709](imgs/screenshot-20240417-203709.png)
 
 转HF：
 
-![screenshot-20240418-074625](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-074625.png)
+![screenshot-20240418-074625](imgs/screenshot-20240418-074625.png)
 
 将 HuggingFace adapter 合并到大语言模型：
 
-![screenshot-20240418-075000](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-075000.png)
+![screenshot-20240418-075000](imgs/screenshot-20240418-075000.png)
 
 TODO: 合并后的文件大小完全一样，为什么？（熟悉QLora的原理，熟悉Merge的原理）
 
 与合并后的模型对话:
 
-![screenshot-20240418-075518](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-075518.png)
+![screenshot-20240418-075518](imgs/screenshot-20240418-075518.png)
 
 ## 自定义微调 截图
 
 转换数据格式：
 
-![screenshot-20240418-080952](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-080952.png)
+![screenshot-20240418-080952](imgs/screenshot-20240418-080952.png)
 
 **使用自定义数据微调：**
 
-![screenshot-20240418-084914](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-084914.png)
+![screenshot-20240418-084914](imgs/screenshot-20240418-084914.png)
 
 **微调后进行测试：**
 
@@ -44,7 +44,7 @@ xtuner convert pth_to_hf internlm_chat_7b_qlora_mqa_e3_copy.py ./work_dirs/inter
 xtuner chat /root/ft-oasst1/internlm-chat-7b --adapter hf --prompt-template internlm_chat --system-template medical
 ```
 
-![screenshot-20240418-091941](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-091941.png)
+![screenshot-20240418-091941](imgs/screenshot-20240418-091941.png)
 
 简单测试，发现训练集可以工作，但测试集的不工作，可能是训练不充分？
 
@@ -52,13 +52,13 @@ xtuner chat /root/ft-oasst1/internlm-chat-7b --adapter hf --prompt-template inte
 
 **训练截图：**
 
-![screenshot-20240418-105623](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-105623.png)
+![screenshot-20240418-105623](imgs/screenshot-20240418-105623.png)
 
 训练时，因modelscope的问题无法导入数据，因训练耗时，这里不进行debug。
 
 **运行lagent**
 
-![screenshot-20240418-114753](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-114753.png)
+![screenshot-20240418-114753](imgs/screenshot-20240418-114753.png)
 
 这时，需要运行：
 
@@ -67,13 +67,13 @@ export MKL_SERVICE_FORCE_INTEL=1
 export MKL_THREADING_LAYER=GNU
 ```
 
-![screenshot-20240418-115341](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-115341.png)
+![screenshot-20240418-115341](imgs/screenshot-20240418-115341.png)
 
 这时，需要修改代码，/root/xtuner019/xtuner/xtuner/tools/chat.py 中，删除任意一处 trust_remote_code
 
 此时，继续运行，发现无法得到正确结果。
 
-![screenshot-20240418-122027](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240418-122027.png)
+![screenshot-20240418-122027](imgs/screenshot-20240418-122027.png)
 
 debug发现，lagent无法正确调用工具。
 
@@ -98,28 +98,28 @@ debug发现，lagent无法正确调用工具。
 
 第0轮：
 
-![screenshot-20240420-094811](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-094811.png)
+![screenshot-20240420-094811](imgs/screenshot-20240420-094811.png)
 
 第120步：
 
-![qianzhi-120](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-120.png)
+![qianzhi-120](imgs/qianzhi-120.png)
 
 第240步：
 
-![qianzhi-240](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-240.png)
+![qianzhi-240](imgs/qianzhi-240.png)
 
 第480步：
 
-![qianzhi-480](/Users/liyu/codespace/InternLM-HW/imgs/qianzhi-480.png)
+![qianzhi-480](imgs/qianzhi-480.png)
 
 测试结果：
 
-![千织](/Users/liyu/codespace/InternLM-HW/imgs/千织.jpg)
+![千织](imgs/千织.jpg)
 
 上传模型：
 
-![screenshot-20240420-145926](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-145926.png)
+![screenshot-20240420-145926](imgs/screenshot-20240420-145926.png)
 
 Github授权失败，无法继续
 
-![screenshot-20240420-165021](/Users/liyu/codespace/InternLM-HW/imgs/screenshot-20240420-165021.png)
+![screenshot-20240420-165021](imgs/screenshot-20240420-165021.png)
